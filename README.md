@@ -1,6 +1,6 @@
 # **Deploying a Python App to AWS ECS using GitHub Actions & Terraform**  
  
-## **Overview**  
+## Overview
 
 This project automates the deployment of a **Python application** to **AWS Elastic Container Service (ECS)** using **GitHub Actions, Docker, and Terraform**.  
 
@@ -12,9 +12,76 @@ By the end of this guide, you'll have a fully automated **CI/CD pipeline** that:
 
 ---
 
-## **Project Goals**  
+## Project Goals
 
 - **Develop a Python-based web application**
 - **Containerize the app using Docker and push it to AWS ECR**
 - **Deploy the app to AWS ECS using Terraform**
 - **Automate testing, building, and deployment using GitHub Actions**  
+
+
+## GitHub Secrets Configuration
+
+Store sensitive AWS credentials in GitHub:  
+
+1. Navigate to **Settings** → **Secrets and Variables** → **Actions**  
+2. Click **New repository secret**  
+3. Add the following secrets:  
+
+| Secret Name | Value |
+|------------|-------|
+| `AWS_ACCESS_KEY_ID` | Your AWS Access Key |
+| `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Key |
+| `AWS_REGION` | AWS Region (e.g., `us-east-1`) |
+| `ECR_REPOSITORY` | Your AWS ECR Repository Name |
+| `ECS_CLUSTER_NAME` | Your ECS Cluster Name |
+| `ECS_SERVICE_NAME` | Your ECS Service Name |
+
+
+Run Terraform commands to apply changes:  
+
+```sh
+terraform init
+terraform apply -auto-approve
+```
+
+
+## GitHub Actions CI/CD Workflow
+
+Workflow File Location: `.github/workflows/workflow.yml`
+
+### Workflow Overview
+
+#### Triggers
+
+- Runs on `push` or `pull_request` events to `main` branch  
+
+#### Job 1: Build & Push Docker Image
+
+- Builds the **Docker image** and pushes it to **AWS ECR**  
+
+#### Job 2: Deploy to AWS ECS
+
+- Updates the ECS Service to use the new container  
+
+
+
+## Final Testing
+
+Once deployment is successful, test the application:  
+
+```sh
+curl http://your-ecs-service-url
+```
+
+---
+
+## Conclusion
+
+**You’ve successfully deployed a Python app to AWS ECS using GitHub Actions & Terraform!**  
+
++ **Fully automated CI/CD pipeline**  
++ **Scalable & secure AWS infrastructure**  
++ **Seamless GitHub Actions integration**  
+
+---
