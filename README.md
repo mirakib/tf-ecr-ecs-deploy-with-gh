@@ -1,5 +1,7 @@
 # **Deploying a Python App to AWS ECS using GitHub Actions & Terraform**  
- 
+
+<img width="2193" height="2997" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/a3d7b36d-5580-4bc2-806d-b982b8756282" />
+
 ## Overview
 
 This project automates the deployment of a **Python application** to **AWS Elastic Container Service (ECS)** using **GitHub Actions, Docker, and Terraform**.  
