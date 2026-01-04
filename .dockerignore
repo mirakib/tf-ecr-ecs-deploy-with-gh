@@ -32,3 +32,5 @@ terraform.tfvars
 
 # Ignore Docker-related files (except Dockerfile)
 docker-compose.yml
+docker-compose.*.yml
+Dockerfile
