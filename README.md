@@ -40,14 +40,6 @@ Store sensitive AWS credentials in GitHub:
 | `ECS_SERVICE_NAME` | Your ECS Service Name |
 
 
-Run Terraform commands to apply changes:  
-
-```sh
-terraform init
-terraform apply -auto-approve
-```
-
-
 ## GitHub Actions CI/CD Workflow
 
 Workflow File Location: `.github/workflows/workflow.yml`
@@ -56,7 +48,7 @@ Workflow File Location: `.github/workflows/workflow.yml`
 
 #### Triggers
 
-- Runs on `push` or `pull_request` events to `main` branch  
+- Runs by manual trigger from Github UI.  
 
 #### Job 1: Build & Push Docker Image
 
