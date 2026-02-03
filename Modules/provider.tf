@@ -9,8 +9,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "terraformbackendaccess"
-    key            = "terraformbackendaccess.tfstate"
+    bucket         = "terraformbackendaccess-mirakib"
+    key            = "terraformbackendaccess-mirakib.tfstate"
     region         = "us-east-1"
     encrypt        = true
     dynamodb_table = "terraform-lock-table" # Prevents concurrent modifications
