@@ -1,6 +1,6 @@
 # Stage 1: The Builder Stage
 
-FROM python:3.11-slim AS builder
+FROM python:3.11-alpine AS builder
 
 WORKDIR /install
 

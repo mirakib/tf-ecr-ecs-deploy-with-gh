@@ -8,3 +8,9 @@ resource "aws_subnet" "my_subnet" {
     Name = "MySubnet"
   }
 }
+
+# Associate Route Table with Subnet
+resource "aws_route_table_association" "public_rta" {
+  subnet_id      = aws_subnet.my_subnet.id
+  route_table_id = aws_route_table.public_rt.id
+}

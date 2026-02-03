@@ -41,7 +41,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
           IMAGE_TAG: latest
         run: |
           echo "Building Docker Image..."
@@ -56,7 +56,7 @@ jobs:
       - name: "Download ECS Task Definition"
         run: |
           echo "Fetching ECS Task Definition..."
-          aws ecs describe-task-definition --task-definition service \
+          aws ecs describe-task-definition --task-definition my-task-definition \
           --query taskDefinition > task-definition.json
 
       - name: "Update ECS Task Definition with New Image"
@@ -64,13 +64,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: application
-          image: ${{ github.env.image }}
+          container-name: my-container
+          image: ${{ env.image }}
 
       - name: "Deploy Updated Task Definition to Amazon ECS"
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ secrets.ECS_SERVICE }}
-          cluster: ${{ secrets.ECS_CLUSTER }}
+          service: ${{ secrets.ECS_SERVICE_NAME }}
+          cluster: ${{ secrets.ECS_CLUSTER_NAME }}
           wait-for-service-stability: true
