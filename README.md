@@ -59,6 +59,12 @@ Workflow File Location: `.github/workflows/workflow.yml`
 - Updates the ECS Service to use the new container  
 
 
+## Project Deployment Steps
+
+### Step 1: Create S3 Bucket and DynamoDB for terraform backend based on `provider.tf`.
+### Step 2: Manually trigger `Apply Terraform Environment` workflow.
+### Step 3: Manually trigger `ECR ECS Deployment` workflow.
+### Step 4: Manually trigger `Destroy Terraform Environment` workflow.
 
 ## Final Testing
 
